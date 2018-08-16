@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<!-- Mirrored from www.zi-han.net/theme/hplus/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:16:41 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>管理后台</title>     
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link href="/css/hplus.parent.css" rel="stylesheet">
+    <style type="text/css">
+    .dropdown-menu {
+        left: -80px;
+    }
+    .navbar-fixed-top, .navbar-static-top {
+	    background: -webkit-linear-gradient(left, #ec5fff , #f5b0ff); /* Safari 5.1 - 6.0 */
+	    background: -o-linear-gradient(right, #ec5fff , #f5b0ff); /* Opera 11.1 - 12.0 */
+	    background: -moz-linear-gradient(right, #ec5fff , #f5b0ff); /* Firefox 3.6 - 15 */
+	    background: linear-gradient(to right, #ec5fff , #f5b0ff); /* 标准的语法（必须放在最后） */
+	   	/*  background: #34a7c8; */
+	}
+    </style>
+</head>
+	<div class="modal fade" id="change_password" style="position:absolute;"  data-backdrop="static">
+	    <div class="modal-dialog" style="width:60%;">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	                    &times;
+	                </button>
+	                <h4 class="modal-title">
+	            <center>修改密码</center>
+	        </h4>
+	            </div>
+	            <div class="modal-body">
+	                <form class="form-horizontal row-border" id="change-password-form">
+	                    <div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label">旧密码: </label>
+	                        <div class="col-sm-6">
+	                            <input class="form-control required" type="password" name="oldPassword" id="oldPassword" style="width:100%" /> 
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label">新密码: </label>
+	                        <div class="col-sm-6">
+	                            <input class="form-control required" type="password" name="newPassword" id="newPassword" style="width:100%" /> 
+	                        </div>
+	                    </div>                     
+	                    <div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label">确认: </label>
+	                        <div class="col-sm-6">
+	                            <input class="form-control required" type="password" name="confirmPassword" id="confirmPassword" style="width:100%" /> 
+	                        </div>
+	                    </div>  
+	                    <div>
+	                    	<div class="col-sm-3"></div>
+	                    	<label id="lbError" style="font-color:red"></label>
+	                    </div>
+	                </form>
+	            </div>
+	            <div class="modal-footer" style="margin-top:0;">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">
+	                    关闭
+	                </button>
+	                <button type="button" class="btn btn-primary bind bind-click" onclick="submitChangePassword()">
+	                    保存
+	                </button>
+	            </div>
+	        </div>
+	    </div>
+	</div> 
+<div class="modal fade" id="edit_profile" style="position:absolute;"  data-backdrop="static">
+	    <div class="modal-dialog" style="width:60%;">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	                    &times;
+	                </button>
+	                <h4 class="modal-title">
+	            <center>修改个人资料</center>
+	        </h4>
+	            </div>
+	            <div class="modal-body">
+	                <form class="form-horizontal row-border" id="edit-profile-form">
+	                    <div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label"><span class="required">*</span>姓名: </label>
+	                        <div class="col-sm-6">
+	                            <input class="form-control required" type="text" name="nick" id="nickname" style="width:100%" /> 
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label"><span class="required">*</span>Email: </label>
+	                        <div class="col-sm-6">
+	                            <input class="form-control required email" type="text" name="email" id="email" style="width:100%" /> 
+	                        </div>
+	                    </div>          
+	                    <div>
+	                    	<div class="col-sm-3"></div>
+	                    	<label id="lbError" style="font-color:red"></label>
+	                    </div>
+	                </form>
+	            </div>
+	            <div class="modal-footer" style="margin-top:0;">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">
+	                    关闭
+	                </button>
+	                <button type="button" class="btn btn-primary bind bind-click" validate-form="edit-profile-form" onclick="submitEditProfile()">
+	                    保存
+	                </button>
+	            </div>
+	        </div>
+	    </div>
+	</div> 
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    
+    <div style="position:absolute;top:0;width:100%;height:60px;border-bottom: 1px solid #e7eaec!important;">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <img style="float:left;margin: 14px 5px 5px 40px;" onclick="location.reload()" src="/img/logo.jpg" width="140" height="40" />
+                    <span style="line-height: 20px;margin-top: 22px;float: left;font-size: 9px;color:#fff"></span>
+                    <a class="navbar-minimalize minimalize-styl-2 btn" href="#"><i class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right"> 
+                    <li class="hidden-xs">
+	                    <a class="dropdown J_tabClose" data-toggle="dropdown"><i class="fa fa fa-user"></i><span id="account"> 个人中心</span>
+	                    </a>
+	                    <ul role="menu" class="dropdown-menu dropdown-menu-right " style="min-width: 150px;">
+	                        <li class="J_tabCloseAll"><a onclick="showEditProfile()"><i class="fa fa fa-edit"></i>个人资料</a>
+	                        </li>
+	                        <li class="J_tabCloseOther"><a onclick="showChangePassword()"><i class="fa fa fa-user-secret"></i> 修改密码</a>
+	                        </li>
+	                    </ul>
+                    </li>
+                    <li class="hidden-xs">
+                        <a href="#" onClick="signOut();"><i class="fa fa fa-sign-out"></i> 退出</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div id="wrapper" style="box-sizing:border-box;padding-top: 60px;">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:;" class="active J_menuTab" data-id="/index.html">首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight" style="right:0px"><i class="fa fa-forward"></i>
+                </button>
+                <!-- <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" id="myiframe" width="100%" height="100%" src="home.html" frameborder="0" data-id="/index.html" seamless></iframe>
+            </div>
+            <div class="footer"> 
+            </div>
+        </div>
+    </div>
+    <script src="js/hplus/hplus.parent.js"></script>
+    <script>
+    function signOut() {
+        try {
+            window.localStorage.removeItem("accountinfo");
+
+        } catch (e) {
+            console.log(e);
+        }
+
+        $.ajax({
+            url: "/daren-web/rbac/logout.wb",
+            success: function() {
+                var loginUrl = "/login.html";
+                parent.location.href = loginUrl;
+            }
+        })
+    }
+    function showEditProfile(){
+    	$("#edit_profile").modal("show");
+    	$.ajax({
+            url: "/daren-web/rbac/user/profile.wb", 
+            success: function(rest) {
+                if(rest.status!=0) {
+                	alert(rest.msg);
+                } else {
+                	$("#nickname").val(rest.result.nickname);
+                	$("#email").val(rest.result.email);
+                }
+            }
+        })
+        
+    }
+    function submitEditProfile(){
+    	var nickname = $("#nickname").val();
+    	var email = $("#email").val();
+    	if(!email || !nickname) {
+    		alert("姓名和Email都必填！");
+    		return false;
+    	}
+    	$.ajax({
+            url: "/daren-web/rbac/user/editProfile.wb",
+            type:"post",
+            data:{
+            	nickname : nickname,
+            	email : email
+            },
+            success: function(rest) {
+                if(rest.status!=0) {
+                	alert(rest.msg);
+                } else {
+                	alert("修改成功！"); 
+                	$("#edit_profile").modal("hide");
+                }
+            }
+        })
+    }
+    function submitChangePassword(){
+    	var oldPassword = $.trim($("#oldPassword").val());
+    	var newPassword = $.trim($("#newPassword").val());
+    	var confirmPassword = $.trim($("#confirmPassword").val());
+    	if(!oldPassword || !newPassword ||!confirmPassword) {
+    		alert("所有输入不能为空！");
+    		return false;
+    	}
+		if(oldPassword.length<6){
+			alert("旧密码不正确！");
+			$("#oldPassword").focus();
+    		return false;
+    	}
+    	if(newPassword.length<6){
+    		alert("密码长度不小于6位！");
+    		$("#newPassword").focus();
+    		return false;
+    	}
+    	if(newPassword != confirmPassword) {
+    		alert("两次输入密码不相同！");
+    		$("#confirmPassword").val();
+    		$("#confirmPassword").focus();
+    		return false;
+    	}
+    	$.ajax({
+            url: "/daren-web/rbac/user/changePassword.wb",
+            data:{
+            	oldPassword : oldPassword,
+            	newPassword : newPassword
+            },
+            success: function(rest) {
+                if(rest.status!=0) {
+                	alert(rest.msg);
+                } else {
+                	alert("修改密码成功，重新登录！");
+                	var loginUrl = "/login.html";
+                    parent.location.href = loginUrl;
+                }
+            }
+        })
+    }
+    
+    function showChangePassword(){
+    	$("#change_password").modal("show");
+    }
+
+    function initMenu() {
+        layerConfig();
+        contabsInit();
+    }
+    </script>
+</body>
+
+</html>

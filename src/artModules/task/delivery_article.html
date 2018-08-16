@@ -1,0 +1,79 @@
+<div class="modal fade" id="delivery_article">
+    <div class="modal-dialog" style="width:60%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    <center>稿件填写</center>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="article-form">
+                	<div class="form-group">
+                        <label class="col-sm-3 control-label"> 任务id: </label> 
+                        <div class="col-sm-6">
+                        	<input type="text" value="{{taskId}}" name="taskId" disabled class="form-control"  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> <span class="required">*</span> 发布日期: </label>
+                        <div class="col-sm-6">
+                            <input class="form-control  required bind bind-date layer-date" type="text" id="issueDate" name="issueDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"><span class="required">*</span>内容标题： </label>
+                        <div class="col-sm-6">
+                            <input class="form-control required bind" type="text" id="articleTitle" name="articleTitle" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"><span class="required">*</span>内容链接： </label>
+                        <div class="col-sm-6">
+                            <input class="form-control required bind" type="text" id="articleUrl" name="articleUrl" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <label class="col-sm-3 control-label"><span class="required">*</span>审核状态: </label>
+                         <div class="col-sm-6">
+                             <select name="ArticleStatus" id="ArticleStatus" class="form-control required bind bind-change">
+                             	<option value="1" selected>待审核</option>
+                             	<option value="2">平台审核通过</option>
+                             	<option value="3">平台审核不通过</option>
+							</select>
+                         </div> 
+                     </div>
+                     <div class="form-group">
+                         <label class="col-sm-3 control-label">备注: </label>
+                         <div class="col-sm-6">
+                             <textarea name="ArticleRemark" class="form-control" rows="3" ></textarea>
+                         </div>
+                     </div>
+                     <input type="hidden" id="id" name="id" />
+                </form>
+                <form  class="form-horizontal"  id="fileForm" method="post"  enctype="multipart/form-data"  name="fileForm">
+                     <div class="form-group">
+                         <label class="col-sm-3 control-label">上传图片: </label>
+                         <div class="col-sm-4">
+                            <input type="file" id="file" name="file"  enctype="multipart/form-data">
+                         </div>
+                         <div class="col-sm-2">
+                            <input type="button" class="btn btn-primary bind bind-click" bind-method="submitImages" value="上传">
+                        </div>
+                     </div>
+                </form>
+                <ul class="imgWrapper"></ul>
+            </div>
+            <div class="modal-footer" style="margin-top:0;">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    关闭
+                </button>
+                <button type="button" class="btn btn-primary bind bind-click" validate-form="article-form" bind-method="submitDeliveryArticle">
+                    保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

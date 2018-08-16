@@ -1,0 +1,85 @@
+<div class="modal fade" id="dr_settle_apply">
+	<div class="modal-dialog" style="width: 60%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">
+					<center>申请结算</center>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal row-border" id="dr_settle_apply_form">
+					<div class="form-group" style="border-top: none;">
+						<label class="col-sm-3 control-label"> <span
+							class="required">*</span> 对账金额:
+						</label>
+						<div class="col-md-6">
+							<input class="form-control required " type="text" name="amt"
+								onkeyup="value=value.replace(/[^\d.]/g,'')" />
+						</div>
+					</div>
+					<div class="form-group" style="border-top: none;">
+						<label class="col-sm-3 control-label"> <span
+							class="required">*</span> 是否有发票:
+						</label>
+						<div class="col-md-6">
+							<select class="form-control" name="hasInvoice">
+								<option value="1">有发票</option>
+								<option value="2">先打款再开发票</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" style="border-top: none;">
+						<label class="col-sm-3 control-label">
+							发票号码
+						</label>
+						<div class="col-sm-6">
+							<input class="form-control required" type="text" name="invoiceNum" />
+						</div>
+					</div>
+					<div class="form-group" style="border-top: none;">
+						<label class="col-sm-3 control-label">
+							发票金额:
+						</label>
+						<div class="col-md-6">
+							<input class="form-control required " type="text"
+								name="invoiceAmt" onkeyup="value=value.replace(/[^\d.]/g,'')" />
+						</div>
+					</div>
+					<!-- <div class="form-group" style="border-top:none;">
+                        <label class="col-sm-3 control-label"> 备注: </label>
+                        <div class="col-md-6">
+                            <textarea name="remark" class="form-control" rows="3" ></textarea>
+                        </div>
+                    </div> -->
+					<input type="hidden" name="taskId" value="{{taskId}}" />
+				</form>
+				<div class="form-group" style="border-top: none;">
+					<form class="form-horizontal" id="invoiceFileForm"
+						method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">上传附件: </label>
+							<div class="col-sm-4">
+								<input type="file" id="add_invoice_file" name="file"
+									enctype="multipart/form-data">
+							</div>
+							<div class="col-sm-2">
+								<input type="button" class="btn bind bind-click"
+									bind-method="submitInvoiceFile" value="提交">
+							</div>
+						</div>
+					</form>
+					<ul id="invoiceFileWrapper" class="imgWrapper"></ul>
+				</div>
+			</div>
+			<div class="modal-footer" style="margin-top: 0;">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					关闭</button>
+				<button type="button" class="btn btn-primary bind bind-click"
+					validate-form="dr_settle_apply_form"
+					bind-method="submitDarenSettlementApplyModal" data-needinvoice="{{if needInvoice}}true{{/if}}">保存</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+<div class="modal fade" id="modify_daren_info">
+	<div class="modal-dialog" style="width: 60%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">修改达人信息</h4>
+			</div>
+			<div class="modal-body col-sm-12">
+				<form class="form-horizontal" id="modify_daren_info_form">
+					<div class="form-group">
+						<input type="hidden" name="id" value="{{id}}" />
+						<div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label"> <span class="required">*</span> 平台: </label>
+	                        <div class="col-md-6">
+	                            <select class="form-control required" name="platform" id="platform" style="width: 100%">
+								</select>
+	                        </div>
+	                    </div>
+						
+						<div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label"> <span class="required">*</span>昵称</label>
+	                        <div class="col-md-6">
+	                        	<input type="text" class="form-control required" id="nickname" name="nickname" value="{{nickname}}">
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group" style="border-top:none;">
+	                        <label class="col-sm-3 control-label"> <span class="required">*</span>已发布文章链接</label>
+	                        <div class="col-md-6">
+	                        	<select class="form-control required" id="resourceType" name="resourceType" style="width: 100%">
+									<option value="0" selected>请选择</option>
+								</select>
+								<input type="text" class="form-control required" id=articleUrl name="articleUrl" value="{{articleUrl}}">
+	                        </div>
+	                    </div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer" style="margin-top: 0;">
+				<button type="button" class="btn btn-primary bind bind-click" validate-form="modify_daren_info_form" bind-method="submitModifyDrInfo">保存</button>
+			</div>
+		</div>
+	</div>
+</div>
